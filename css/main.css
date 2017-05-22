@@ -1,0 +1,30 @@
+body {
+
+}
+
+#input, #predictions {
+    background: whitesmoke;
+    font-size: 20pt;
+    margin-top: 5%;
+    min-width: 50px;
+    width: 70%;
+    margin-left: 15%; 
+    padding: 1%;
+    border: none;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+}
+
+#predictions {
+    overflow: auto;
+    min-height: 150px;
+    max-height: 450px;
+    margin-top: 1%;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%; 
+}
