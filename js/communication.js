@@ -7,12 +7,20 @@ var TYPE2_URL = 'http://localhost/intelliFont/server/next.php';
 var TYPE3_URL = 'http://localhost/intelliFont/server/nextx2.php';
 
 
-$('#input').on('change paste keyup', function () {
+$('#input').on('change paste keyup', function (event) {
+    if (event.keyCode === $.ui.keyCode.TAB &&
+        $(this).autocomplete("instance").menu.active) {
+        event.preventDefault();
+    }
+
     var inputString = $(this).val();
     var lastChar = inputString.split('');
     var words = getWord(inputString, lastChar[lastChar.length - 1]);
     console.log(`word: ${WORDS_TO_SEND[0]} | prev_word: ${WORDS_TO_SEND[1]}`);
-    if (inputString === '') COUNTER = 0;
+    if (inputString === '') {
+        COUNTER = 0;
+        availableWords = [];
+    }
     if ((words.toString() !== WORDS_TO_SEND.toString() && TYPE !== PREV_TYPE) ||
         (words.toString() === WORDS_TO_SEND.toString() && TYPE !== PREV_TYPE) ||
         (words.toString() !== WORDS_TO_SEND.toString() && TYPE === PREV_TYPE)) {
@@ -38,6 +46,7 @@ function refreshSuggestions() {
     for (let i = 0; i < WORDS_FROM_SERVER.length; i++) {
         $('#predictions').append(`<div>${WORDS_FROM_SERVER[i]}</div>`);
     }
+    availableWords = WORDS_FROM_SERVER;
 }
 
 // Send word/words to server 

@@ -21,6 +21,7 @@ body {
     min-height: 150px;
     max-height: 450px;
     margin-top: 1%;
+    display: none;
 }
 
 #title {

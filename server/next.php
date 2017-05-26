@@ -19,7 +19,6 @@ $result = mysqli_query($conn, $sql);
 if ($result->num_rows == 0) {
     $sql = 'INSERT INTO collection (word) VALUES ("' . $word . '")';
     $result = mysqli_query($conn, $sql);
-    echo json_encode(['Updated: ' . $word]);
 } else {
     $sql = 'SELECT mapping.* FROM mapping INNER JOIN collection ON mapping.collection_id = collection.id WHERE collection.word = "' . $word . '" GROUP BY word';
     $result = mysqli_query($conn, $sql);

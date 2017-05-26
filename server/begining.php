@@ -19,10 +19,10 @@ $sql = 'SELECT * FROM collection WHERE word LIKE "' . $word . '%"';
 $result = mysqli_query($conn, $sql);
 $data = [];
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $data[] = $row['word'];
-        echo json_encode($data);
     }
+    echo json_encode($data);
 } else {
     echo json_encode([]);
 }
