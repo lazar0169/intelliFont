@@ -1,6 +1,6 @@
 var availableWords = [];
 function split(val) {
-    return val.split(/\s*[\s,]\s*/);
+    return val.split(/\s*[\s]\s*/);
 }
 function extractLast(term) {
     return split(term).pop();

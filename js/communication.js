@@ -87,7 +87,7 @@ function sendWord() {
 
 // get word/words from input box
 function getWord(string, lastChar) {
-    let tmpSentence = string.split('.');
+    let tmpSentence = string.split(/[\.!\?]+/);
     let tmpArray = tmpSentence[tmpSentence.length - 1].split(' ');
     let tmpChar = '';
     let tmpCharPrev = '';
@@ -102,7 +102,7 @@ function getWord(string, lastChar) {
         tmpCharPrev = tmpArray[tmpArray.length - 2].split('');
     }
     function isWordCompleted(string) {
-        if (lastChar === ' ' || lastChar === '.') {
+        if (lastChar === ' ' || lastChar === '.' || lastChar === ',') {
             return true;
         } else {
             return false;
@@ -126,13 +126,18 @@ function getWord(string, lastChar) {
             data = [tmpArray[tmpArray.length - 2]];
             TYPE = 2;
         }
+        data[0] = data[0].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
     } else {
-        if (tmpArray.length < 3 || isWordCompleted(string)) { // TODO! Treba da se menja na space a ne samo kada krene korisnik da pise rec if (lastChar = ' ')
+        if (tmpArray.length < 3 || isWordCompleted(string) || lastChar === ' ') { // TODO! Treba da se menja na space a ne samo kada krene korisnik da pise rec if (lastChar = ' ')
             data = [tmpArray[tmpArray.length - 1], tmpArray[tmpArray.length - 2]];
         } else if (!isWordCompleted(string)) {
             data = [tmpArray[tmpArray.length - 2], tmpArray[tmpArray.length - 3]];
         }
         TYPE = 3;
+        try {
+            data[0] = data[0].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+            data[1] = data[1].replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+        } catch (error) {}
     }
     // console.log('isBeginning: ' + isBeginning(string) + ', isWordCompleted: ' + isWordCompleted(string) + ', lastChar: ' + lastChar + ', tmpArrayLength: ' + tmpArray.length);
     return data;
