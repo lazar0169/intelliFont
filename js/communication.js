@@ -44,9 +44,11 @@ window.addEventListener('load', function () {
 function refreshSuggestions() {
     $('#predictions').html('');
     for (let i = 0; i < WORDS_FROM_SERVER.length; i++) {
-        $('#predictions').append(`<div>${WORDS_FROM_SERVER[i]}</div>`);
+        if (!availableWords.contains(WORDS_FROM_SERVER[i])) {
+            $('#predictions').append(`<div>${WORDS_FROM_SERVER[i]}</div>`);
+            availableWords.push(WORDS_FROM_SERVER[i]);
+        }
     }
-    availableWords = WORDS_FROM_SERVER;
 }
 
 // Send word/words to server 
