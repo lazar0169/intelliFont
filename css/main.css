@@ -29,3 +29,10 @@ body {
     justify-content: center;
     margin-top: 10%; 
 }
+
+#ui-id-1 {
+    font-size: 28px;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+    box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.45);
+}
